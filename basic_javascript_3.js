@@ -42,5 +42,7 @@ f--;
 document.write(f);
 }
 
- 
-
+{
+ window.alert("math.random() * 100");
+ document.write(math.random()*100);
+}
