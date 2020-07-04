@@ -3,7 +3,7 @@ document.write(typeof "word");
 }
 
 function afunction() {
-    document.getElementById("test3").innerhtml = isNaN('this is a string');
+    document.getElementById("test3").innerHTML = isNaN('this is a string');
 }
 
 function function2() {
@@ -51,5 +51,5 @@ function or() {
 }
 
 function lastfunction() {
-    document.getElementById("not").innerhtml = ! (20 < 10);
+    document.getElementById("not").innerHTML = ! (20 < 10);
 }
