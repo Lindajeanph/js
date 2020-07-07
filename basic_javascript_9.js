@@ -13,22 +13,22 @@ function countdown() {
 }
 
 var slideIndex = 1;
-showSlides(slideIndex);
+showslides(slideIndex);
 
 // Next/previous controls
-function plusSlides(n) {
-  showSlides(slideIndex += n);
+function plusslides(n) {
+  showslides(slideIndex += n);
 }
 
 // Thumbnail image controls
-function showslides(n) {
+function pic(n) {
   showslides(slideIndex = n);
 }
 
 function showslides(n) {
   var i;
   var slides = document.getElementsByClassName("ocean");
-  var title = document.getElementsByClassName("title");
+  var dots = document.getElementsByClassName("dot");
   if (n > slides.length) {slideIndex = 1}
   if (n < 1) {slideIndex = slides.length}
   for (i = 0; i < slides.length; i++) {
