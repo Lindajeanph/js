@@ -1,5 +1,5 @@
 
-function age() {
+function get_age() {
     age= document.getElementById("age").value;
     if (age >= 25) {
         age= "You can rent a car";
