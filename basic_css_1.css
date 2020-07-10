@@ -7,10 +7,16 @@ position: relative;
 margin:auto;
 }
 
-.myslides {
+.ocean {
     display:none;
 
 }
+
+img {
+    width: 200px;
+    height: 400px;
+    object-fit: cover;
+  }
 
 .prev, .next {
     cursor: pointer;
