@@ -63,12 +63,18 @@ function update_display() {
 
 update_display();
 const keys = document.querySelector('.calculator-keys');
-keys.addEventListener('click'), (event) => {
+keys.addEventListener('click', (event) => {
     const { target } = event;
     if (!target.matches('button')) {
         return;
     }
-}
+
+    if (target.classlist.contains('operator')) {
+        handle_operator(target.value);
+        update_display();
+        return;
+    }
+
 
     if (target.classlist.contains('decimal')) {
         input_decimal(target.value);
@@ -81,6 +87,7 @@ keys.addEventListener('click'), (event) => {
         update_display();
         return;
     }
+
 
 input_digit(target.value);
 update_display();
