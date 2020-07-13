@@ -1,135 +1,128 @@
-let activeplayer='x';
-let selectedsquares=[];
-function placexoro(squarenumber) {
-    if(!selectedsquares.some(element => element.includes(squarenumber))) {
-        let select= document.getElementById(squarenumber);
-        if (activeplayer==='x') {
-            select.style.backgroundimage='url("../images/x.png")';
-        } else {
-            select.style.backgroundimage='url("../images/o.png")';
+let activePlayer = 'X';
+let selectedSquares = [];
 
-        }
-        selectedsquares.push(squarenumber + activeplayer);
-        checkwinconditions();
-        if (activeplayer=== 'x') {
-            activeplayer='o';
+function placeXOrO(squareNumber) {
+    if (!selectedSquares.some(element => element.includes(squareNumber))) {
+        let select = document.getElementById(squareNumber);
+        if (activePlayer === 'X') {
+            select.style.backgroundImage = 'url("images/x.png")';
         } else {
-            activeplayer='x';
+            select.style.backgroundImage = 'url("images/o.png")';
         }
-        audio('../media/place.mp3');
-        if(activeplayer=== 'o') {
-            disableclick();
-            setTimeout(function () { computersturn(); }, 1000);
+        selectedSquares.push(squareNumber + activePlayer);
+        checkWinConditions();
+        if (activePlayer === 'X') {
+            activePlayer = 'O';
+        } else {
+            activePlayer = 'X';
+        }
+        audio('./media/place.mp3');
+        if (activePlayer === 'O') {
+            disableClick();
+            setTimeout(function () { computersTurn(); }, 1000);
         }
         return true;
-        }
-        function computersturn() {
-            let success=false;
-            let pickasquare;
-            while(!success) {
-                pickasquare= String(math.floor(math.random() * 9));
-                if (placexoro(pickasquare)) {
-                    placexoro(pickasquare);
-                    success=true;
+    }
+
+    function computersTurn() {
+        let success = false;
+        let pickASquare;
+        while (!success) {
+            pickASquare = String(Math.floor(Math.random() * 9));
+            if (placeXOrO(pickASquare)) {
+                placeXOrO(pickASquare);
+                success = true;
             };
         }
     }
 }
 
-function checkwinconditions() {
-    if (arrayincludes('0x','1x','2x')) {drawwinline(50, 100, 558,100);}
-    else if (arrayincludes('3x','4x','5x')) {drawwinline(50,100,558,100);}
-    else if (arrayincludes('6x','7x','8x')) {drawwinline(50,304,558,304);}
-    else if (arrayincludes('0x','3x','6x')) {drawwinline(50,508,558,508);}
-    else if (arrayincludes('1x','4x','7x')) {drawwinline(100,50,100,558);}
-    else if (arrayincludes('2x','5x','8x')) {drawwinline(304,50,304,558);}
-    else if (arrayincludes('6x','4x','2x')) {drawwinline(508,50,508,558);}
-    else if (arrayincludes('3x','4x','5x')) {drawwinline(100,508,510,90);}
-    else if (arrayincludes('0x','4x','8x')) {drawwinline(100,100,520,520);}
-    else if (arrayincludes('00','10','20')) {drawwinline(50,100,558,100);}
-    else if (arrayincludes('30x','40x','50')) {drawwinline(50,304,558,304);}
-    else if (arrayincludes('60x','70','80')) {drawwinline(50,508,558,508);}
-    else if (arrayincludes('00','30','60')) {drawwinline(100,50,100,558);}
-    else if (arrayincludes('10','40','70')) {drawwinline(304,50,304,558);}
-    else if (arrayincludes('20','50','80')) {drawwinline(508,50,508,558);}
-    else if (arrayincludes('60','40','20')) {drawwinline(100,508,510,90);}
-    else if (arrayincludes('00','40','80')) {drawwinline(100,100,520,520);}
-    else if (selectedsquares.length >= 9) {
+function checkWinConditions() {
+    if (arrayIncludes('0X', '1X', '2X')) { drawWinLine(50, 100, 558, 100) }
+    else if (arrayIncludes('3X', '4X', '5X')) { drawWinLine(50, 304, 558, 304) }
+    else if (arrayIncludes('6X', '7X', '8X')) { drawWinLine(50, 508, 558, 508) }
+    else if (arrayIncludes('0X', '3X', '6X')) { drawWinLine(100, 50, 100, 558) }
+    else if (arrayIncludes('1X', '4X', '7X')) { drawWinLine(304, 50, 304, 558) }
+    else if (arrayIncludes('2X', '5X', '8X')) { drawWinLine(508, 50, 508, 558) }
+    else if (arrayIncludes('6X', '4X', '2X')) { drawWinLine(100, 508, 510, 90) }
+    else if (arrayIncludes('0X', '4X', '8X')) { drawWinLine(100, 100, 520, 520) }
+    else if (arrayIncludes('0O', '1O', '2O')) { drawWinLine(50, 100, 558, 100) }
+    else if (arrayIncludes('3O', '4O', '5O')) { drawWinLine(50, 304, 558, 304) }
+    else if (arrayIncludes('6O', '7O', '8O')) { drawWinLine(50, 508, 558, 508) }
+    else if (arrayIncludes('0O', '3O', '6O')) { drawWinLine(100, 50, 100, 558) }
+    else if (arrayIncludes('1O', '4O', '7O')) { drawWinLine(304, 50, 304, 558) }
+    else if (arrayIncludes('2O', '5O', '8O')) { drawWinLine(508, 50, 508, 558) }
+    else if (arrayIncludes('6O', '4O', '2O')) { drawWinLine(100, 508, 510, 90) }
+    else if (arrayIncludes('0O', '4O', '8O')) { drawWinLine(100, 100, 520, 520) }
+    else if (selectedSquares.length >= 9) {
         audio('./media/tie.mp3');
-        setTimeout(function () {resetgame(); }, 1000);
+        setTimeout(function () { resetGame(); }, 500);
+    }
+
+    function arrayIncludes(squareA, squareB, squareC) {
+        const a = selectedSquares.includes(squareA);
+        const b = selectedSquares.includes(squareB);
+        const c = selectedSquares.includes(squareC);
+        if (a === true && b === true && c === true) { return true; }
     }
 }
 
-function arrayincludes(squarea,squareb,squarec) {
-    const a=selectedsquares.includes(squarea);
-    const b= selectedsquares.includes(squareb); 
-    const c= selectedsquares.includes(squarec);
-    if (a=== true && b === true && c === true) { return true; }
-}   
-
-function disableclick() {
-    body.style.pointerEvents='none';
-    setTimeout(function() {body.style.pointerEvents ='auto';}, 1000);
+function resetGame() {
+    for (let i = 0; i < 9; i++) {
+        let square = document.getElementById(String(i));
+        square.style.backgroundImage = '';
+    }
+    selectedSquares = [];
 }
 
-function audio(audiourl) {
-    let audio= new audio(audiourl);
+function audio(audioURL) {
+    let audio = new Audio(audioURL);
     audio.play();
 }
 
-function drawwinline(coordx1, coordy1, coordx2, coordy2) {
-    const canvas= document.getElementById('win-lines');
-    const c = canvas.getcontext('2d');
-    let x1= coordx1,
-        y1= coordy1
-        x2= coordx2,
-        y2= coordy2,
-        x= x1,
-        y= y1;
+function drawWinLine(coordX1, coordY1, coordX2, coordY2) {
+    const canvas = document.getElementById('win-lines');
+    const c = canvas.getContext('2d');
+    let x1 = coordX1,
+        y1 = coordY1,
+        x2 = coordX2,
+        y2 = coordY2,
+        x = x1,
+        y = y1;
 
-}
-
-function animatelinedrawing() {
-    const animationloop= requestAnimationFrame(animatelinedrawing);
-    c.clearrect(0, 0, 608, 608);
-    c.beginpath();
-    c.moveto(x1, y1);
-    c.lineto(x,y);
-    c.linewidth= 10;
-    c.strokestyle= 'rgba(70, 255, 33, .8)';
-    c.stroke();
-    if (x1<= x2 && y1 <=y2) {
-        if(x< x2) {x+=10; }
-        if(y< y2) {y +=10;}
-        if(x>= x2 && y>= y2) {cancelAnimationFrame(animationloop); }
-
+    function animateLineDrawing() {
+        const animationLoop = requestAnimationFrame(animateLineDrawing);
+        c.clearRect(0, 0, 608, 608);
+        c.beginPath();
+        c.moveTo(x1, y1);
+        c.lineTo(x, y);
+        c.lineWidth = 10;
+        c.strokeStyle = 'rgba(70, 255, 33, .8)';
+        c.stroke();
+        if (x1 <= x2 && y1 <= y2) {
+            if (x < x2) { x += 10; }
+            if (y < y2) { y += 10; }
+            if (x >= x2 && y >= y2) { cancelAnimationFrame(animationLoop); }
+        }
+        if (x1 <= x2 && y1 >= y2) {
+            if (x < x2) { x += 10; }
+            if (y > y2) { y -= 10; }
+            if (x >= x2 && y <= y2) { cancelAnimationFrame(animationLoop); }
+        }
     }
 
-    if (x1 <= x2 && y1 >= y2) {
-        if(x < x2) {x +=10; }
-        if (y > y2) {y-=10; }
-        if (x >= x2 && y <= y2) {cancelAnimationFrame(animationloop); }
-
+    function clear() {
+        const animationLoop = requestAnimationFrame(clear);
+        c.clearRect(0, 0, 608, 608);
+        cancelAnimationFrame(animationLoop);
     }
-     
+    disableClick();
+    audio('./media/winGame.mp3');
+    animateLineDrawing();
+    setTimeout(function () { clear(); resetGame(); }, 1000);
 }
 
-function clear() {
-    const animationloop= requestAnimationFrame(clear);
-    c.clearrect(0, 0, 608, 608);
-    cancelAnimationFrame(animationloop);
-}
-
-function disableclick() {
-audio('./media/wingame.mp3');
-animatelinedrawing();
-setTimeout(function () {clear(); resetgame(); }, 1000);
-}
-
-function resetgame() {
-    for (let i = 0; i < 9; i++) {
-        let square = document.getElementById(String(i));
-        square.style.backgroundimage = '';
-    }
-    selectedsquares= [];
+function disableClick() {
+    body.style.pointerEvents = 'none';
+    setTimeout(function () { body.style.pointerEvents = 'auto'; }, 1000);
 }
