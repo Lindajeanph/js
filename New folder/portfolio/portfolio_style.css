@@ -1,5 +1,7 @@
-
-
+html {
+  scroll-behavior: smooth;
+}
+  
   body {
     margin: 0%;
     background-color:gainsboro;
@@ -12,7 +14,10 @@
   position: fixed;
   top: 0;
   width: 100%;
-  z-index:1;
+  z-index: 1;
+  position: fixed;
+  -webkit-animation: moveNav 5s;
+  animation: moveNav 5s;
 }
 
 .navbar a {
@@ -24,16 +29,32 @@
   font-family: avant garde, helvetica;
   font-size: 20px;
   text-align: center;
+  position: relative;
+  -webkit-animation: movenavText 5.75s;
+  animation: movenavText 5.75;
+  letter-spacing: .2vw;
 }
 
-.navbar a:hover {
+.Navbar a:hover {
   background-color: rgb(228, 192, 220);
-  color: blue;
+  color: rgb(184, 118, 154);
   font-weight: bold;
+  cursor: pointer;
+  -webkit-transition-durations: 1s;
+  transition-duration: 1s;
 }
 
-.navbar a.active {
-  background-color: #d87991;
+.Navbar a.active {
+  background-color: #ec9bbb;
+}
+
+@keyframes zoominoutsinglefeatured {
+  0% {
+    transform: scale(1.5, 1.5);
+  }
+  100% {
+    transform: scale(1,1);
+  }
 }
 
 #typing_video {
@@ -50,6 +71,13 @@
   width: 100%;
   padding: 20px;
   margin-top: 23%;
+  position: relative;
+  -webkit-animation: moveNav 4s;
+  animation: movevideoText 4s;
+}
+
+#Slideshow_background {
+  background:rgba(255,255,255, 0.35);
 }
 
 *{
@@ -162,7 +190,6 @@ input[type=submit]:hover {
   color: black;
   font-weight: bold;
   transform: scale(1.5);
-
 }
 
 form {
@@ -203,7 +230,41 @@ body {
   opacity: 1;
   transition: 1s opacity;
 }
+
 body.fade-out {
   opacity: 0;
   transition: none;
+}
+
+button {
+  font-family: "Optima";
+  letter-spacing: .3vw;
+  font-size: 1.5vw;
+  border-style: solid;
+  cursor: pointer;
+  width: 100%;
+  height: auto;
+}
+
+button:hover, .form-container .btn:hover{
+  color: white;
+  background-color: black;
+  -webkit-transition-duration: 1s; 
+  transition-duration: 1s;
+  border-style: solid;
+  border-color: silver;
+}
+
+.form-container .cancel:hover{
+  color: white;
+  background-color: darkred;
+  -webkit-transition-duration: 1s; 
+  transition-duration: 1s;
+  border-style: solid;
+  border-color: black;
+}	
+
+footer {
+	padding: 2%;
+	background-color:white;
 }
